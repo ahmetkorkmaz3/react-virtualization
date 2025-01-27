@@ -174,7 +174,6 @@ a.secondary {
 
 .gridContainer {
   width: 100%;
-  overflow-x: auto;
   margin-top: 20px;
   background: white;
   border-radius: 8px;
@@ -199,14 +198,32 @@ a.secondary {
 }
 
 .gridBody {
-  max-height: 80vh;
-  overflow-y: auto;
+  border-radius: 0 0 8px 8px;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+/* WebKit tabanlı tarayıcılar için scrollbar stilleri */
+.gridBody::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.gridBody::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 0 0 8px 0;
+}
+
+.gridBody::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 4px;
 }
 
 .row {
   display: grid;
   grid-template-columns: 80px 4fr 1fr 1fr 1fr;
   border-bottom: 1px solid #eee;
+  transition: background-color 0.2s ease;
 }
 
 .row:hover {
@@ -216,11 +233,17 @@ a.secondary {
 .cell {
   padding: 12px 16px;
   color: #666;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
 
 .productName {
   font-weight: 500;
   color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .productDescription {
@@ -272,6 +295,7 @@ a.secondary {
   color: #eab308;
   display: flex;
   align-items: center;
+  white-space: nowrap;
 }
 
 .ratingNumber {
